@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,5 +43,10 @@ public class Circle : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRect, Input.mousePosition, _canvas.worldCamera, out _localPoint);
         _thisTransform.anchoredPosition = _localPoint;
         _isTransition = true;
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(_thisMaterial);
     }
 }

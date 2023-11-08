@@ -9,7 +9,7 @@ public class Start2Game : MonoBehaviour
     public GameObject transition;
 
     private const float TransitionSpeed = 2.0f;
-    private const string NextSceneName = "Game";
+    public string NextSceneName = "Game";
     
     private bool _isFadeIn;
     private float _transitionAlpha;

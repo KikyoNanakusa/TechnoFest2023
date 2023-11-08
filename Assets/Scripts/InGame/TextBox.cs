@@ -38,7 +38,6 @@ public class TextBox : MonoBehaviour
 
     private async UniTask UpdateTextOnClick()
     {
-        Debug.Log("UpdateTextOnClick");
         var token = this.GetCancellationTokenOnDestroy();
         while (true)
         {
