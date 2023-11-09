@@ -11,12 +11,14 @@ public class TextBox : MonoBehaviour
     public GameObject renderChan;
     [SerializeField]
     public Sprite[] renderChanSprites;
+    public GameObject eventManager;
     
     private bool _isClicked;
     private bool _isClickable = false;
     private IEnumerator<string> _script;
     private TMP_Text _thisText;
     private Image _renderChanImage;
+    private EventObjectManager _eventObjectManager;
     
     public bool IsClicked
     {
@@ -32,6 +34,7 @@ public class TextBox : MonoBehaviour
     
     async void Start()
     {
+        _eventObjectManager = eventManager.GetComponent<EventObjectManager>();
         _renderChanImage = renderChan.GetComponent<Image>();
         _thisText = this.GetComponent<TMP_Text>();
         IEnumerable<string> enumerableScript =
@@ -52,9 +55,17 @@ public class TextBox : MonoBehaviour
             await UniTask.WaitUntil(() => _isClicked, cancellationToken: token);
             if (_script.MoveNext() == false) {Debug.Log("Scripts End!"); break;}
 
-            string[] script = _script.Current.Split(" ,$");
+            string[] script = _script.Current.Split(" ,");
             _thisText.text = script[0];
             _renderChanImage.sprite = renderChanSprites[int.Parse(script[1])];
+            if (script.Length >= 3)
+            {
+                if (int.Parse(script[2]) == 1)
+                {
+                    Debug.Log("Event");
+                    _eventObjectManager.EventFlag = true;
+                }
+            }
             _isClicked = false;
             Debug.Log(_script.Current);
         }
