@@ -68,6 +68,6 @@ public class TextBox : MonoBehaviour
             }
             _isClicked = false;
             Debug.Log(_script.Current);
-        }
+        }   
     }
 }

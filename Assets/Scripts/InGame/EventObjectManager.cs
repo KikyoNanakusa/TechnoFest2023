@@ -47,6 +47,9 @@ public class EventObjectManager : MonoBehaviour
         
         await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
         ActivateNormalDir();
+
+        await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
+        DeactivateArrows();
     }
 
     private void ActivateSphere()
@@ -70,6 +73,13 @@ public class EventObjectManager : MonoBehaviour
     private void ActivateNormalDir()
     {
         normalDir.SetActive(true);
+        _eventFlag = false;
+    }
+
+    private void DeactivateArrows()
+    {
+        lightDir.SetActive(false);
+        normalDir.SetActive(false);
         _eventFlag = false;
     }
 }

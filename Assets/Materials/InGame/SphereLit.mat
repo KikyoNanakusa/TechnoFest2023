@@ -11,7 +11,8 @@ Material:
   m_Shader: {fileID: 4800000, guid: b4b82fd308a968e43a0bd0d08a61fe2e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - RIMLIGHT
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -104,8 +105,8 @@ Material:
     - _OutlineWidth: 3
     - _Parallax: 0.02
     - _REFRECTION: 0
-    - _RIMLIGHT: 0
-    - _RimPower: 1
+    - _RIMLIGHT: 1
+    - _RimPower: 0.14
     - _SmoothnessTextureChannel: 0
     - _SoftParticlesEnabled: 0
     - _SoftParticlesFarFadeDistance: 1
@@ -114,7 +115,7 @@ Material:
     - _SpecularPower: 1
     - _SrcBlend: 1
     - _TOON: 0
-    - _ToonThreshold: 0
+    - _ToonThreshold: 0.29
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
@@ -124,7 +125,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _OutlineColor: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
-    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
-    - _ToonShadeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ToonShadeColor: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
   m_BuildTextureStacks: []

@@ -511,6 +511,7 @@ MonoBehaviour:
   renderChanSprites:
   - {fileID: 21300000, guid: da7f7ed62d4966649b4b6574e5b83c50, type: 3}
   - {fileID: 21300000, guid: 528138c0e153dca4d8815e220739d00e, type: 3}
+  - {fileID: 21300000, guid: efaa02cd036aad746b96255f73b5afeb, type: 3}
   eventManager: {fileID: 583716003}
 --- !u!1 &454631276
 GameObject:

@@ -6,7 +6,8 @@ Shader "UI/HDR/Render-chan"
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         [HDR]_Color ("Tint", Color) = (1,1,1,1)
-
+        _YThreshold("y threshold", Range(0, 1)) = 0.0
+        
         _StencilComp ("Stencil Comparison", Float) = 8
         _Stencil ("Stencil ID", Float) = 0
         _StencilOp ("Stencil Operation", Float) = 0
@@ -81,7 +82,8 @@ Shader "UI/HDR/Render-chan"
             fixed4 _TextureSampleAdd;
             float4 _ClipRect;
             float4 _MainTex_ST;
-
+            float _YThreshold;
+            
             v2f vert(appdata_t v)
             {
                 v2f OUT;
@@ -108,6 +110,7 @@ Shader "UI/HDR/Render-chan"
                 clip (color.a - 0.001);
                 #endif
 
+                clip(step(_YThreshold, IN.texcoord.y) - 0.01);
                 return color;
             }
         ENDCG
