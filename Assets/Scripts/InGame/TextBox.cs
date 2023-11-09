@@ -56,7 +56,6 @@ public class TextBox : MonoBehaviour
             if (_script.MoveNext() == false) {Debug.Log("Scripts End!"); break;}
 
             string[] script = _script.Current.Split(" ,");
-            _thisText.text = script[0];
             _renderChanImage.sprite = renderChanSprites[int.Parse(script[1])];
             if (script.Length >= 3)
             {
@@ -66,8 +65,22 @@ public class TextBox : MonoBehaviour
                     _eventObjectManager.EventFlag = true;
                 }
             }
+
+            await ShowText(script[0]);
             _isClicked = false;
             Debug.Log(_script.Current);
         }   
+    }
+
+    private async UniTask ShowText(string text)
+    {
+        _thisText.text = text;
+        var textLength = text.Length;
+        for (int i = 0; i < textLength; i++)
+        {
+            _thisText.maxVisibleCharacters = i;
+            await UniTask.Delay(TimeSpan.FromSeconds(0.05f));
+        }
+        _thisText.maxVisibleCharacters = textLength;
     }
 }
