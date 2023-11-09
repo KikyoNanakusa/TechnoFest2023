@@ -56,7 +56,11 @@ public class TextBox : MonoBehaviour
             if (_script.MoveNext() == false) {Debug.Log("Scripts End!"); break;}
 
             string[] script = _script.Current.Split(" ,");
-            _renderChanImage.sprite = renderChanSprites[int.Parse(script[1])];
+            if (script.Length >= 2)
+            {
+                _renderChanImage.sprite = renderChanSprites[int.Parse(script[1])];
+            }
+            
             if (script.Length >= 3)
             {
                 if (int.Parse(script[2]) == 1)
@@ -69,7 +73,7 @@ public class TextBox : MonoBehaviour
             await ShowText(script[0]);
             _isClicked = false;
             Debug.Log(_script.Current);
-        }   
+        }
     }
 
     private async UniTask ShowText(string text)

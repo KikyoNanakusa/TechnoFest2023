@@ -8,6 +8,8 @@ public class EventObjectManager : MonoBehaviour
     public Material lit;
     public GameObject lightDir;
     public GameObject normalDir;
+    public GameObject thresholdSlider;
+    public GameObject doubleThresholdSlider;
 
     private bool _eventFlag = false;
     private MeshRenderer _sphereMeshRenderer;
@@ -24,6 +26,9 @@ public class EventObjectManager : MonoBehaviour
         sphere.SetActive(false);
         lightDir.SetActive(false);
         normalDir.SetActive(false);
+        thresholdSlider.SetActive(false);
+        doubleThresholdSlider.SetActive(false);
+        lit.SetFloat("_TOON", 0);
         _sphereMeshRenderer = sphere.GetComponent<MeshRenderer>();
         _sphereMeshRenderer.material = unlit;
 
@@ -36,9 +41,8 @@ public class EventObjectManager : MonoBehaviour
         var token = this.GetCancellationTokenOnDestroy();
         
         await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
-        Debug.Log("ActivateSpere");
         ActivateSphere();
-
+        
         await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
         SetSphereMaterialLit();
         
@@ -50,6 +54,15 @@ public class EventObjectManager : MonoBehaviour
 
         await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
         DeactivateArrows();
+        
+        await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
+        SetSphereMaterialToon();
+
+        await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
+        ActivateToonThreshold();
+        
+        await UniTask.WaitUntil(() => _eventFlag, cancellationToken: token);
+        ActivateToonDoubleThreshold();
     }
 
     private void ActivateSphere()
@@ -81,5 +94,23 @@ public class EventObjectManager : MonoBehaviour
         lightDir.SetActive(false);
         normalDir.SetActive(false);
         _eventFlag = false;
+    }
+
+    private void SetSphereMaterialToon()
+    {
+        lit.SetFloat("_TOON", 1);
+        _eventFlag = false;
+    }
+
+    private void ActivateToonThreshold()
+    {
+        thresholdSlider.SetActive(true);
+        _eventFlag = false;
+    }
+
+    private void ActivateToonDoubleThreshold()
+    {
+        doubleThresholdSlider.SetActive(true);
+        _eventFlag = true;
     }
 }

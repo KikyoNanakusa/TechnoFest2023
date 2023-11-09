@@ -19,6 +19,11 @@
         _ToonThreshold("Toon  Threshold", Range(0, 1)) = 0
         _ToonShadeColor("Toon Shade Color", Color) = (1.0, 1.0, 1.0, 1.0)
         _DiffuseShade("Diffuse", Range(0,1)) = 1.0
+        [Toggle(USETOONDOUBLESHADE)] _TOONDOUBLESHADE("Use Toon Double Shade", float) = 0
+        _ToonDoubleThreshold("Toon  Threshold", Range(0, 1)) = 0
+        _ToonDoubleShadeColor("Toon Shade Color", Color) = (1.0, 1.0, 1.0, 1.0)
+
+        
 
         [Space(40)]
         [Toggle(NORMALMAP)] _NORMALMAP("Use Normalmap", float) = 0
@@ -103,6 +108,7 @@
             #pragma shader_feature MATCAPMASK
             #pragma shader_feature NORMALMAP
             #pragma shader_feature USETOON
+            #pragma shader_feature USETOONDOUBLESHADE
 
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
@@ -151,6 +157,8 @@
 
             half _ToonThreshold;
             float4 _ToonShadeColor;
+            half _ToonDoubleThreshold;
+            float4 _ToonDoubleShadeColor;
 
             v2f vert (appdata v)
             {
@@ -194,6 +202,11 @@
 
                     #ifdef USETOON
                         col = toonshade(normal, lightDir, _ToonThreshold, _ToonShadeColor, col);
+
+                        #ifdef USETOONDOUBLESHADE
+                            _ToonDoubleThreshold = min(_ToonThreshold, _ToonDoubleThreshold);
+                            col = toonshade(normal, lightDir, _ToonDoubleThreshold, _ToonDoubleShadeColor, col);
+                        #endif
                     #else
                         col = diffuse(lightDir, normal, _DiffuseShade, col);
                     #endif
