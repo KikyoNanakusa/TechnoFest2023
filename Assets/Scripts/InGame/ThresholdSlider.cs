@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class ThresholdSlider : MonoBehaviour
 {
     public Material toonMaterial;
+    public Material doubleToonMaterial;
     public GameObject thresholdSliderUI;
     public GameObject thresholdTextUI;
 
@@ -23,6 +24,7 @@ public class ThresholdSlider : MonoBehaviour
     public void ChangeToonThresholdValue()
     {
         toonMaterial.SetFloat("_ToonThreshold", _thresholdSlider.value);
+        doubleToonMaterial.SetFloat("_ToonThreshold", _thresholdSlider.value);
         _thresholdText.text = $"閾値:{_thresholdSlider.value.ToString("N2")}";
     }
     

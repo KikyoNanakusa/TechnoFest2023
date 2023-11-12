@@ -13,8 +13,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - RIMLIGHT
-  - USETOON
-  - USETOONDOUBLESHADE
   m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -116,10 +114,10 @@ Material:
     - _SpecularHighlights: 1
     - _SpecularPower: 149.4
     - _SrcBlend: 1
-    - _TOON: 1
-    - _TOONDOUBLESHADE: 1
+    - _TOON: 0
+    - _TOONDOUBLESHADE: 0
     - _ToonDoubleThreshold: 0
-    - _ToonThreshold: 0.25227845
+    - _ToonThreshold: 0.24
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

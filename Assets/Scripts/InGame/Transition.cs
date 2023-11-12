@@ -12,7 +12,7 @@ public class Transition : MonoBehaviour
         FadeOut();
     }
 
-    private void FadeOut()
+    public void FadeOut()
     {
         _transitionAnimator.SetTrigger("FadeOut");
     }

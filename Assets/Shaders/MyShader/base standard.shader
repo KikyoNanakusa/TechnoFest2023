@@ -202,13 +202,13 @@
 
                     #ifdef USETOON
                         col = toonshade(normal, lightDir, _ToonThreshold, _ToonShadeColor, col);
-
-                        #ifdef USETOONDOUBLESHADE
-                            _ToonDoubleThreshold = min(_ToonThreshold, _ToonDoubleThreshold);
-                            col = toonshade(normal, lightDir, _ToonDoubleThreshold, _ToonDoubleShadeColor, col);
-                        #endif
                     #else
                         col = diffuse(lightDir, normal, _DiffuseShade, col);
+                    #endif
+
+                    #ifdef USETOONDOUBLESHADE
+                        _ToonDoubleThreshold = min(_ToonThreshold, _ToonDoubleThreshold);
+                        col = toonshade(normal, lightDir, _ToonDoubleThreshold, _ToonDoubleShadeColor, col);
                     #endif
                     // col = diffuse(lightDir, normal, _DiffuseShade, col);
 
